@@ -14,6 +14,10 @@ Route::post('/greating', function() {
     return "Post Request sent";
 });
 
+Route::get('/greating/{id}', function($id) {
+    return "Id request set ".$id;
+});
+
 Route::redirect('/welcome', '/greating', 301);
 
 $context = ['name'=>'Thivanka', 'age'=>25];
