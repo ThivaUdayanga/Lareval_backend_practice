@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\invokeController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,14 +31,20 @@ Route::get('/optional/{name?}', function (?string $name = 'Guest') {
 });
 
 // Route Regular Expression Constraints
-Route::get('/user/{name}', function (string $name) {
-    return 'User '.$name;
-})->where('name', '[A-Za-z]+');
+// Route::get('/user/{name}', function (string $name) {
+//     return 'User '.$name;
+// })->where('name', '[A-Za-z]+');
  
-Route::get('/user/{id}', function (string $id) {
-    return 'User Id '.$id;
-})->where('id', '[0-9]+');
+// Route::get('/user/{id}', function (string $id) {
+//     return 'User Id '.$id;
+// })->where('id', '[0-9]+');
  
-Route::get('/user/{id}/{name}', function (string $id, string $name) {
-    return 'User Id '.$id.' User Name '.$name;
-})->where(['id' => '[0-9]+', 'name' => '[A-Za-z]+']);
+// Route::get('/user/{id}/{name}', function (string $id, string $name) {
+//     return 'User Id '.$id.' User Name '.$name;
+// })->where(['id' => '[0-9]+', 'name' => '[A-Za-z]+']);
+
+Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user', [UserController::class, 'add']);
+
+//invokable Controller
+Route::get('/invoke', invokeController::class);
