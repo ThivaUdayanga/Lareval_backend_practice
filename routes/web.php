@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\invokeController;
+use App\Http\Controllers\SupplierController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,3 +49,5 @@ Route::get('/user', [UserController::class, 'add']);
 
 //invokable Controller
 Route::get('/invoke', invokeController::class);
+
+Route::resource('/supplier', SupplierController::class);
